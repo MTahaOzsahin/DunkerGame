@@ -48,13 +48,22 @@ namespace DunkGame.Inputs
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Dunk"",
-                    ""type"": ""Value"",
-                    ""id"": ""68788e02-f4d1-4151-b840-74b28540cd73"",
+                    ""name"": ""PrimaryContact"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""982ca63a-5b9d-4c4a-a3e6-dee81a48162f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrimaryPosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""2b7b2be0-6c9c-446e-88d9-4238a3b7a56c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,46 +179,9 @@ namespace DunkGame.Inputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ed52293e-f484-43ca-9c90-2399f5fee670"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dunk"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Touch"",
-            ""id"": ""8988720c-73aa-4f1b-8bdf-ba685f53a732"",
-            ""actions"": [
-                {
-                    ""name"": ""PrimaryContact"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""d3ab8bd4-e4e1-4c19-b1c5-19f73eb41c44"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PrimaryPosition"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""6b623f05-f7c7-4791-9f98-028662491455"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""339e2c10-6b7a-46e2-8a98-f96246727147"",
+                    ""id"": ""5a05456a-1117-447f-a4e0-c9c2a1addab2"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(pressPoint=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryContact"",
@@ -218,7 +190,7 @@ namespace DunkGame.Inputs
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e0de7d74-e203-493b-8fe4-7ce6a0ecd156"",
+                    ""id"": ""04321692-7e2d-4797-8e0f-b2b977755135"",
                     ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -236,11 +208,8 @@ namespace DunkGame.Inputs
             m_Baseball = asset.FindActionMap("Baseball", throwIfNotFound: true);
             m_Baseball_Movement = m_Baseball.FindAction("Movement", throwIfNotFound: true);
             m_Baseball_Joystick = m_Baseball.FindAction("Joystick", throwIfNotFound: true);
-            m_Baseball_Dunk = m_Baseball.FindAction("Dunk", throwIfNotFound: true);
-            // Touch
-            m_Touch = asset.FindActionMap("Touch", throwIfNotFound: true);
-            m_Touch_PrimaryContact = m_Touch.FindAction("PrimaryContact", throwIfNotFound: true);
-            m_Touch_PrimaryPosition = m_Touch.FindAction("PrimaryPosition", throwIfNotFound: true);
+            m_Baseball_PrimaryContact = m_Baseball.FindAction("PrimaryContact", throwIfNotFound: true);
+            m_Baseball_PrimaryPosition = m_Baseball.FindAction("PrimaryPosition", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -302,14 +271,16 @@ namespace DunkGame.Inputs
         private IBaseballActions m_BaseballActionsCallbackInterface;
         private readonly InputAction m_Baseball_Movement;
         private readonly InputAction m_Baseball_Joystick;
-        private readonly InputAction m_Baseball_Dunk;
+        private readonly InputAction m_Baseball_PrimaryContact;
+        private readonly InputAction m_Baseball_PrimaryPosition;
         public struct BaseballActions
         {
             private @BaseballInputAction m_Wrapper;
             public BaseballActions(@BaseballInputAction wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Baseball_Movement;
             public InputAction @Joystick => m_Wrapper.m_Baseball_Joystick;
-            public InputAction @Dunk => m_Wrapper.m_Baseball_Dunk;
+            public InputAction @PrimaryContact => m_Wrapper.m_Baseball_PrimaryContact;
+            public InputAction @PrimaryPosition => m_Wrapper.m_Baseball_PrimaryPosition;
             public InputActionMap Get() { return m_Wrapper.m_Baseball; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -325,9 +296,12 @@ namespace DunkGame.Inputs
                     @Joystick.started -= m_Wrapper.m_BaseballActionsCallbackInterface.OnJoystick;
                     @Joystick.performed -= m_Wrapper.m_BaseballActionsCallbackInterface.OnJoystick;
                     @Joystick.canceled -= m_Wrapper.m_BaseballActionsCallbackInterface.OnJoystick;
-                    @Dunk.started -= m_Wrapper.m_BaseballActionsCallbackInterface.OnDunk;
-                    @Dunk.performed -= m_Wrapper.m_BaseballActionsCallbackInterface.OnDunk;
-                    @Dunk.canceled -= m_Wrapper.m_BaseballActionsCallbackInterface.OnDunk;
+                    @PrimaryContact.started -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryContact;
+                    @PrimaryContact.performed -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryContact;
+                    @PrimaryContact.canceled -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryContact;
+                    @PrimaryPosition.started -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryPosition;
+                    @PrimaryPosition.performed -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryPosition;
+                    @PrimaryPosition.canceled -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryPosition;
                 }
                 m_Wrapper.m_BaseballActionsCallbackInterface = instance;
                 if (instance != null)
@@ -338,44 +312,6 @@ namespace DunkGame.Inputs
                     @Joystick.started += instance.OnJoystick;
                     @Joystick.performed += instance.OnJoystick;
                     @Joystick.canceled += instance.OnJoystick;
-                    @Dunk.started += instance.OnDunk;
-                    @Dunk.performed += instance.OnDunk;
-                    @Dunk.canceled += instance.OnDunk;
-                }
-            }
-        }
-        public BaseballActions @Baseball => new BaseballActions(this);
-
-        // Touch
-        private readonly InputActionMap m_Touch;
-        private ITouchActions m_TouchActionsCallbackInterface;
-        private readonly InputAction m_Touch_PrimaryContact;
-        private readonly InputAction m_Touch_PrimaryPosition;
-        public struct TouchActions
-        {
-            private @BaseballInputAction m_Wrapper;
-            public TouchActions(@BaseballInputAction wrapper) { m_Wrapper = wrapper; }
-            public InputAction @PrimaryContact => m_Wrapper.m_Touch_PrimaryContact;
-            public InputAction @PrimaryPosition => m_Wrapper.m_Touch_PrimaryPosition;
-            public InputActionMap Get() { return m_Wrapper.m_Touch; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(TouchActions set) { return set.Get(); }
-            public void SetCallbacks(ITouchActions instance)
-            {
-                if (m_Wrapper.m_TouchActionsCallbackInterface != null)
-                {
-                    @PrimaryContact.started -= m_Wrapper.m_TouchActionsCallbackInterface.OnPrimaryContact;
-                    @PrimaryContact.performed -= m_Wrapper.m_TouchActionsCallbackInterface.OnPrimaryContact;
-                    @PrimaryContact.canceled -= m_Wrapper.m_TouchActionsCallbackInterface.OnPrimaryContact;
-                    @PrimaryPosition.started -= m_Wrapper.m_TouchActionsCallbackInterface.OnPrimaryPosition;
-                    @PrimaryPosition.performed -= m_Wrapper.m_TouchActionsCallbackInterface.OnPrimaryPosition;
-                    @PrimaryPosition.canceled -= m_Wrapper.m_TouchActionsCallbackInterface.OnPrimaryPosition;
-                }
-                m_Wrapper.m_TouchActionsCallbackInterface = instance;
-                if (instance != null)
-                {
                     @PrimaryContact.started += instance.OnPrimaryContact;
                     @PrimaryContact.performed += instance.OnPrimaryContact;
                     @PrimaryContact.canceled += instance.OnPrimaryContact;
@@ -385,15 +321,11 @@ namespace DunkGame.Inputs
                 }
             }
         }
-        public TouchActions @Touch => new TouchActions(this);
+        public BaseballActions @Baseball => new BaseballActions(this);
         public interface IBaseballActions
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnJoystick(InputAction.CallbackContext context);
-            void OnDunk(InputAction.CallbackContext context);
-        }
-        public interface ITouchActions
-        {
             void OnPrimaryContact(InputAction.CallbackContext context);
             void OnPrimaryPosition(InputAction.CallbackContext context);
         }

@@ -9,11 +9,18 @@ namespace DunkGame.Concrates.Movement
     {
         Rigidbody _rigidbody;
         float movementSpeed = 5f;
+        float throwPower = 500f;
         public Mover(Rigidbody rigidbody)
         {
             _rigidbody = rigidbody;
         }
-        void IMover.Movement(Vector2 direction)
+
+        public void ThrowBall(Vector3 dif)
+        {
+            _rigidbody.AddForce(dif * throwPower);
+        }
+
+        public void Movement(Vector2 direction)
         {
             _rigidbody.velocity = new Vector3(direction.y * movementSpeed, _rigidbody.velocity.y, direction.x * -movementSpeed);
         }
