@@ -1,2 +1,2 @@
 # DunkerGame
- Prototype game mechanics
+ Prototype game mechanics for Lecten
