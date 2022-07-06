@@ -8,14 +8,14 @@ namespace DunkGame.Concrates.Movement
     public class Mover : IMover
     {
         Rigidbody _rigidbody;
-        float movementSpeed = 5f;
+        float movementSpeed = 15f;
         float throwPower = 500f;
         public Mover(Rigidbody rigidbody)
         {
             _rigidbody = rigidbody;
         }
 
-        public void ThrowBall(Vector3 dif)
+        public void ThrowBall(Vector3 dif) // Will not use
         {
             _rigidbody.velocity = Vector3.zero; 
             _rigidbody.angularVelocity = Vector3.zero;

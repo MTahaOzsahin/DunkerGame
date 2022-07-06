@@ -4,14 +4,14 @@ using DunkGame.Inputs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DunkGame.Concrates.Controllers 
 {
     public class BallController : MonoBehaviour
     {
         IMover mover;
-        IThrower thrower;
-
+        ParabolaController parabolaController;
         SwipeDetection swipeDetection;
 
         // This section for getting player inputs to get smooth movement. Can be moved to another script later if wanted.//
@@ -23,10 +23,12 @@ namespace DunkGame.Concrates.Controllers
 
         [SerializeField] Collider basketCollider;
 
+        //Timer for colldown between shots.
+        float timer = 3f;
+
         private void Awake()
         {
             mover = new Mover(GetComponent<Rigidbody>());
-            thrower = new Thrower();
             inputAction = new BaseballInputAction();
             swipeDetection = SwipeDetection.Instance;
         }
@@ -51,9 +53,14 @@ namespace DunkGame.Concrates.Controllers
             }
             return direction;
         }
+        private void Update()
+        {
+            timer += Time.deltaTime;
+        }
         private void FixedUpdate()
         {
             Movement();
+            FallCheck();
         }
         void Movement()
         {
@@ -61,11 +68,31 @@ namespace DunkGame.Concrates.Controllers
         }
         void ThrowBall()
         {
-            //Vector3 shoot = (basketCollider.transform.position - transform.position).normalized;
-            //mover.ThrowBall(shoot);
+            if (timer > 3f)
+            {
+                parabolaController = GetComponent<ParabolaController>();
+                parabolaController.FollowParabola();
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            thrower.SimulateProjectile(transform, basketCollider.transform);
+                timer = 0f;
+            }
+        }
+        bool IsBallNearToBasket() // This method make the shot avaible if only close enough to basket. If not can not throw ball. Can be added above if wanted.
+        {
+           float distance = Vector3.Distance(transform.position, basketCollider.transform.position);
+            if (Mathf.Abs(distance) < 15f)
+            {
+                return true;
+            }
+            return false;
+        }
 
+        void FallCheck() //To prevent ball to fall.
+        {
+            if (transform.position.y < -30)
+            {
+                SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 }

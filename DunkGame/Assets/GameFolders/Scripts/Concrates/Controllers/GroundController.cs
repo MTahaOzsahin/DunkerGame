@@ -11,7 +11,7 @@ namespace DunkGame.Concrates.Controllers
         {
             if (collision.collider.GetComponent<BallController>() != null)
             {
-                collision.rigidbody.AddForce(new Vector3(0f, 190.6f, 0f));
+                collision.rigidbody.AddForce(new Vector3(0f, 890.6f, 0f));
             }
         }
         // This method can be use for bounce any target that hit the ground if wanted. For now above method will be quicker.

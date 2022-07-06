@@ -39,15 +39,6 @@ namespace DunkGame.Inputs
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Joystick"",
-                    ""type"": ""Value"",
-                    ""id"": ""10702a4a-a909-475a-9824-eed2eacfd12f"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""PrimaryContact"",
                     ""type"": ""PassThrough"",
                     ""id"": ""982ca63a-5b9d-4c4a-a3e6-dee81a48162f"",
@@ -124,56 +115,56 @@ namespace DunkGame.Inputs
                 },
                 {
                     ""name"": ""Joystick"",
-                    ""id"": ""d3ba3529-7184-4b1f-9893-27062903b025"",
-                    ""path"": ""2DVector"",
+                    ""id"": ""aa1b223f-6a20-4b60-95d2-a82fd46bb49e"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Joystick"",
+                    ""action"": ""Movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""8f32428c-cb72-4bda-a55b-4bd3472976a1"",
+                    ""id"": ""0f920008-0a4f-46ff-8014-918d93fc5024"",
                     ""path"": ""<Joystick>/stick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Joystick"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""56fab988-ace0-4bb1-8aaf-0090181f1d7b"",
+                    ""id"": ""4afc0068-e9a3-46d5-9022-3817d10eb55b"",
                     ""path"": ""<Joystick>/stick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Joystick"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""722f8f19-6dbe-4740-b3d8-5534d83c806a"",
+                    ""id"": ""90c20771-2845-4ab0-8aa7-361e3e9119d9"",
                     ""path"": ""<Joystick>/stick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Joystick"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""c08c23f9-70ba-4ebc-8930-20ee430b9f3b"",
+                    ""id"": ""031ebd55-f93e-417b-b562-3c4f269c2236"",
                     ""path"": ""<Joystick>/stick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Joystick"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -181,7 +172,7 @@ namespace DunkGame.Inputs
                     ""name"": """",
                     ""id"": ""5a05456a-1117-447f-a4e0-c9c2a1addab2"",
                     ""path"": ""<Touchscreen>/primaryTouch/press"",
-                    ""interactions"": ""Press(pressPoint=0.1)"",
+                    ""interactions"": ""Press(pressPoint=0.5,behavior=1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PrimaryContact"",
@@ -207,7 +198,6 @@ namespace DunkGame.Inputs
             // Baseball
             m_Baseball = asset.FindActionMap("Baseball", throwIfNotFound: true);
             m_Baseball_Movement = m_Baseball.FindAction("Movement", throwIfNotFound: true);
-            m_Baseball_Joystick = m_Baseball.FindAction("Joystick", throwIfNotFound: true);
             m_Baseball_PrimaryContact = m_Baseball.FindAction("PrimaryContact", throwIfNotFound: true);
             m_Baseball_PrimaryPosition = m_Baseball.FindAction("PrimaryPosition", throwIfNotFound: true);
         }
@@ -270,7 +260,6 @@ namespace DunkGame.Inputs
         private readonly InputActionMap m_Baseball;
         private IBaseballActions m_BaseballActionsCallbackInterface;
         private readonly InputAction m_Baseball_Movement;
-        private readonly InputAction m_Baseball_Joystick;
         private readonly InputAction m_Baseball_PrimaryContact;
         private readonly InputAction m_Baseball_PrimaryPosition;
         public struct BaseballActions
@@ -278,7 +267,6 @@ namespace DunkGame.Inputs
             private @BaseballInputAction m_Wrapper;
             public BaseballActions(@BaseballInputAction wrapper) { m_Wrapper = wrapper; }
             public InputAction @Movement => m_Wrapper.m_Baseball_Movement;
-            public InputAction @Joystick => m_Wrapper.m_Baseball_Joystick;
             public InputAction @PrimaryContact => m_Wrapper.m_Baseball_PrimaryContact;
             public InputAction @PrimaryPosition => m_Wrapper.m_Baseball_PrimaryPosition;
             public InputActionMap Get() { return m_Wrapper.m_Baseball; }
@@ -293,9 +281,6 @@ namespace DunkGame.Inputs
                     @Movement.started -= m_Wrapper.m_BaseballActionsCallbackInterface.OnMovement;
                     @Movement.performed -= m_Wrapper.m_BaseballActionsCallbackInterface.OnMovement;
                     @Movement.canceled -= m_Wrapper.m_BaseballActionsCallbackInterface.OnMovement;
-                    @Joystick.started -= m_Wrapper.m_BaseballActionsCallbackInterface.OnJoystick;
-                    @Joystick.performed -= m_Wrapper.m_BaseballActionsCallbackInterface.OnJoystick;
-                    @Joystick.canceled -= m_Wrapper.m_BaseballActionsCallbackInterface.OnJoystick;
                     @PrimaryContact.started -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryContact;
                     @PrimaryContact.performed -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryContact;
                     @PrimaryContact.canceled -= m_Wrapper.m_BaseballActionsCallbackInterface.OnPrimaryContact;
@@ -309,9 +294,6 @@ namespace DunkGame.Inputs
                     @Movement.started += instance.OnMovement;
                     @Movement.performed += instance.OnMovement;
                     @Movement.canceled += instance.OnMovement;
-                    @Joystick.started += instance.OnJoystick;
-                    @Joystick.performed += instance.OnJoystick;
-                    @Joystick.canceled += instance.OnJoystick;
                     @PrimaryContact.started += instance.OnPrimaryContact;
                     @PrimaryContact.performed += instance.OnPrimaryContact;
                     @PrimaryContact.canceled += instance.OnPrimaryContact;
@@ -325,7 +307,6 @@ namespace DunkGame.Inputs
         public interface IBaseballActions
         {
             void OnMovement(InputAction.CallbackContext context);
-            void OnJoystick(InputAction.CallbackContext context);
             void OnPrimaryContact(InputAction.CallbackContext context);
             void OnPrimaryPosition(InputAction.CallbackContext context);
         }

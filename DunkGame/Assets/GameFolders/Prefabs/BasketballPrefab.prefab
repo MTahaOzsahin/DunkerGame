@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5804b41ffd078944da8ff20919fe501f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.57
+      value: -13.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5804b41ffd078944da8ff20919fe501f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.24
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5804b41ffd078944da8ff20919fe501f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.52
+      value: -7.69
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5804b41ffd078944da8ff20919fe501f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -45,11 +45,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5804b41ffd078944da8ff20919fe501f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5804b41ffd078944da8ff20919fe501f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5804b41ffd078944da8ff20919fe501f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -116,3 +116,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a539194da9d9e43831b499a3df86f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basketCollider: {fileID: 0}
+--- !u!114 &1806327267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205613180380644355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e247b5bfa155ab04589f344a7e25be29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 10
+  ParabolaRoot: {fileID: 0}
+  Autostart: 0
+  Animation: 1

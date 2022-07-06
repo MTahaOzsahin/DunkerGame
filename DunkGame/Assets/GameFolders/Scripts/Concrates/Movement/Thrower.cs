@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DunkGame.Concrates.Movement
 {
-    public class Thrower : IThrower
+    public class Thrower : IThrower // Will not use.
     {
         [SerializeField] float firingAngle = 45.0f;
         [SerializeField] float gravity = 1.8f;
