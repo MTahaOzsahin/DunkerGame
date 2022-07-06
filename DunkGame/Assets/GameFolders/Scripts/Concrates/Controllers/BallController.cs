@@ -10,6 +10,7 @@ namespace DunkGame.Concrates.Controllers
     public class BallController : MonoBehaviour
     {
         IMover mover;
+        IThrower thrower;
 
         SwipeDetection swipeDetection;
 
@@ -25,6 +26,7 @@ namespace DunkGame.Concrates.Controllers
         private void Awake()
         {
             mover = new Mover(GetComponent<Rigidbody>());
+            thrower = new Thrower();
             inputAction = new BaseballInputAction();
             swipeDetection = SwipeDetection.Instance;
         }
@@ -59,11 +61,11 @@ namespace DunkGame.Concrates.Controllers
         }
         void ThrowBall()
         {
-            Vector3 shoot = (basketCollider.transform.position - transform.position).normalized;
-            
+            //Vector3 shoot = (basketCollider.transform.position - transform.position).normalized;
+            //mover.ThrowBall(shoot);
 
-            Vector3 difFromBallToBasket = (basketCollider.transform.position - transform.position);
-            mover.ThrowBall(difFromBallToBasket);
+            thrower.SimulateProjectile(transform, basketCollider.transform);
+
         }
     }
 }

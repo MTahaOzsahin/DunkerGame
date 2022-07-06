@@ -17,6 +17,8 @@ namespace DunkGame.Concrates.Movement
 
         public void ThrowBall(Vector3 dif)
         {
+            _rigidbody.velocity = Vector3.zero; 
+            _rigidbody.angularVelocity = Vector3.zero;
             _rigidbody.AddForce(dif * throwPower);
         }
 
