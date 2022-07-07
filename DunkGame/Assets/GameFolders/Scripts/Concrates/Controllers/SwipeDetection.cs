@@ -50,7 +50,6 @@ namespace DunkGame.Concrates.Controllers
         {
             if (Vector3.Distance(startPosition,endPosition) >= minimumDistance && (endTime - startTime) <= maximumTime)
             {
-                Debug.Log("Swipe Detected");
                 Debug.DrawLine(startPosition, endPosition, Color.red,5f);
                 Vector3 direction = endPosition - startPosition;
                 Vector2 direction2D = new Vector2(direction.x, direction.y).normalized;
@@ -62,7 +61,6 @@ namespace DunkGame.Concrates.Controllers
             if (Vector2.Dot(Vector2.up,direction) > directionThreshold)
             {
                 OnSwipe?.Invoke();
-                Debug.Log("Swiper up");
             }
         }
 

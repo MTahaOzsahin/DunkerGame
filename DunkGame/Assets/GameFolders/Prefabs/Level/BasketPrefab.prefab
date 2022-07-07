@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6db7aff0726c22749bcd08b9b2e761ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.19
+      value: 6.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6db7aff0726c22749bcd08b9b2e761ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -71,7 +71,7 @@ MeshCollider:
   m_GameObject: {fileID: 792429510042243331}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -89,7 +89,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3061511216984096024}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.49018347
   m_Height: 0.98036695
@@ -109,7 +109,7 @@ MeshCollider:
   m_GameObject: {fileID: 3421170252172472365}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -133,7 +133,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &7270015836020736049
 BoxCollider:
@@ -148,22 +148,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9058394, y: 2.5189815, z: 3.853661}
   m_Center: {x: -0.6177075, y: 0.11941075, z: -0.008616686}
---- !u!138 &1736123452012768955
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7284977282400083498}
-  m_ConnectedBody: {fileID: 3216741525554031879, guid: e51098c5440741841b99f06b886750dd, type: 3}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
---- !u!114 &4210589346285236113
+--- !u!114 &6924524106152254738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +157,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7284977282400083498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e2799775f512b4f9f3f69264e31ccd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cc7bf8595af4c84bb1492a9e5120a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 0.5
+  strenght: 0.3
+  vibrato: 10
+  randomness: 10
+  sanpping: 0
+  fadeOut: 1

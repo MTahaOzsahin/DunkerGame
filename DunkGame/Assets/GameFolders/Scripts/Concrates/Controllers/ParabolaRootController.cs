@@ -16,7 +16,7 @@ namespace DunkGame.Concrates.Controllers
         [SerializeField] Collider basketCollider;
         [SerializeField] Transform ballTransform;
 
-        [SerializeField] float lerpValue = 0.5f;
+        //[SerializeField] float lerpValue = 0.5f; 
         [SerializeField] float secondPointHeight = 4f;
 
         private void Update()
@@ -26,12 +26,13 @@ namespace DunkGame.Concrates.Controllers
         void SetPositions()
         {
             this.gameObject.transform.GetChild(0).position = ballTransform.position;
-            this.gameObject.transform.GetChild(1).position = new Vector3(this.gameObject.transform.GetChild(1).position.x, secondPointHeight
-                , Vector3.Slerp(ballTransform.position, basketCollider.transform.position, lerpValue).z);
+            this.gameObject.transform.GetChild(1).position = new Vector3(this.gameObject.transform.GetChild(1).position.x, secondPointHeight, 
+                (ballTransform.position.z + basketCollider.transform.position.z) / 2f);
             this.gameObject.transform.GetChild(2).position = basketCollider.transform.position;
+            //this.gameObject.transform.GetChild(1).position = new Vector3(this.gameObject.transform.GetChild(1).position.x, secondPointHeight
+            //, Vector3.Slerp(ballTransform.position, basketCollider.transform.position, lerpValue).z);  // This for lerp for second point if wanted.
 
-            
-            
+
             if (Mathf.Abs(Vector3.Distance(ballTransform.position,basketCollider.transform.position)) > 20f) // If ball far enough can be basket randomize.
             {
                 float randomZOffset = Random.Range(-4f, 4f);
