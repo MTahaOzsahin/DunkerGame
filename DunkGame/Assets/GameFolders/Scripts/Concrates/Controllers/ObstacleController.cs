@@ -1,34 +1,45 @@
+using DunkGame.Abstracts;
+using DunkGame.Concrates.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DunkGame.Concrates.Controllers
 {
-    public class ObstacleController : MonoBehaviour
+    public class ObstacleController : MonoBehaviourSingleton<ObstacleController>, IMoveableObject
     {
+
         [Header("Movement Values")]
-        [SerializeField] Vector3 direction;
-        [SerializeField, Range(0,2)] float moveSpeed;
-        [SerializeField, Range(0, 2)] float moveRate;
+        [SerializeField] Vector3 direction = new Vector3(0,0,1);
+        [SerializeField,Range(1f,10f)] float moveRange;
+        [SerializeField] float moveRate = 2f;
+
+        float moveTimer = 0f;
         private void OnTriggerEnter(Collider collider)
         {
             if (collider.GetComponent<BallController>() != null)
             {
-                Debug.Log("a");
+                GameManager.Instance.RestartGame();
             }
         }
-        private void Start()
+        private void Update()
         {
-            StartCoroutine(MovingObstacle());
+            MoveObstacle();
         }
-        IEnumerator MovingObstacle()
+        public void MoveObstacle()
         {
-            while (true)
+            moveTimer += Time.deltaTime;
+            if (moveTimer > moveRate)
             {
-                transform.Translate(direction * moveSpeed * Time.deltaTime);
-                yield return new WaitForSeconds(moveRate);
-                transform.Translate(-direction * moveSpeed * Time.deltaTime);
-                yield return new WaitForSeconds(moveRate);
+                transform.Translate(moveRange * Time.deltaTime * direction);
+                if (moveTimer > moveRate * 2)
+                {
+                    transform.Translate(moveRange * Time.deltaTime * -direction * 2);
+                    if (moveTimer > moveRate * 3)
+                    {
+                        moveTimer = 0f;
+                    }
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2300718448396484574
+--- !u!1 &6571734299493049138
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2300718448396484573}
-  - component: {fileID: 2300718448396484562}
-  - component: {fileID: 2300718448396484563}
-  - component: {fileID: 2300718448396484572}
-  - component: {fileID: 5354017471651025607}
-  m_Layer: 6
-  m_Name: Obstacle
+  - component: {fileID: 6571734299493049143}
+  - component: {fileID: 6571734299493049142}
+  - component: {fileID: 6571734299493049141}
+  - component: {fileID: 6571734299493049140}
+  - component: {fileID: 6571734299493049139}
+  m_Layer: 0
+  m_Name: ExtraScoreObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2300718448396484573
+--- !u!4 &6571734299493049143
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300718448396484574}
-  m_LocalRotation: {x: 0, y: 0.23038942, z: 0, w: 0.9730985}
-  m_LocalPosition: {x: -8.51, y: 3.8, z: -1.76}
-  m_LocalScale: {x: 0.20000002, y: 7.3201704, z: 6}
+  m_GameObject: {fileID: 6571734299493049138}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.84, y: 7.69, z: -7.34}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 26.64, z: 0}
---- !u!33 &2300718448396484562
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6571734299493049142
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300718448396484574}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2300718448396484563
+  m_GameObject: {fileID: 6571734299493049138}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6571734299493049141
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300718448396484574}
+  m_GameObject: {fileID: 6571734299493049138}
   m_Enabled: 1
-  m_CastShadows: 0
+  m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b864e9a0364606e49911127bd596035b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,31 +85,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2300718448396484572
-BoxCollider:
+--- !u!135 &6571734299493049140
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300718448396484574}
+  m_GameObject: {fileID: 6571734299493049138}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5354017471651025607
+--- !u!114 &6571734299493049139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2300718448396484574}
+  m_GameObject: {fileID: 6571734299493049138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa4ebc922503fd41a04460e51c22cfc, type: 3}
+  m_Script: {fileID: 11500000, guid: b20c76275b0b3354a9a94286dc43bd58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: -1}
-  moveRange: 10
-  moveRate: 1
+  extraScorePanel: {fileID: 0}
