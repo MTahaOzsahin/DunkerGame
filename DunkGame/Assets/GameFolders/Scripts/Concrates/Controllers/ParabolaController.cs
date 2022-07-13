@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class ParabolaController : MonoBehaviour
 {
+    /// Credits to https://gist.github.com/ditzel/68be36987d8e7c83d48f497294c66e08
+
     /// <summary>
     /// Animation Speed
     /// </summary>

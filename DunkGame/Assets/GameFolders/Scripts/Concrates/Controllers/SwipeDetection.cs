@@ -6,6 +6,9 @@ namespace DunkGame.Concrates.Controllers
 {
     public class SwipeDetection : MonoBehaviourSingleton<SwipeDetection>
     {
+        /* This script made to detect is swipe started and which direction to swipe.
+         */
+
         SwipeController swipeController;
 
         [SerializeField] float minimumDistance = 0.2f;
@@ -44,10 +47,11 @@ namespace DunkGame.Concrates.Controllers
         {
             endPosition = position;
             endTime = time;
-            DetechSwipe();
+            DetectSwipe();
         }
-        void DetechSwipe()
+        void DetectSwipe()
         {
+            //Check for swipe lenght and duration is enough to perform.
             if (Vector3.Distance(startPosition,endPosition) >= minimumDistance && (endTime - startTime) <= maximumTime)
             {
                 Debug.DrawLine(startPosition, endPosition, Color.red,5f);
@@ -56,6 +60,8 @@ namespace DunkGame.Concrates.Controllers
                 SwipeDirection(direction2D);
             }
         }
+
+        //Check which direction to swipe.
         void SwipeDirection(Vector2 direction)
         {
             if (Vector2.Dot(Vector2.up,direction) > directionThreshold)

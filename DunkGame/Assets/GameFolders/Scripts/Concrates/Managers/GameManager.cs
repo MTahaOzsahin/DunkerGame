@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace DunkGame.Concrates.Managers
 {
+    //Main GameManager. Its controls scenes, loading levels and mainmenu ui.
     public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         public void StartGame()

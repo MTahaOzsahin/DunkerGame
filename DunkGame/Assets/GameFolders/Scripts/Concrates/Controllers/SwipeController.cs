@@ -37,6 +37,8 @@ namespace DunkGame.Concrates.Controllers
             inputAction.Baseball.PrimaryContact.started += ctx => StartTouchPrimary(ctx);
             inputAction.Baseball.PrimaryContact.canceled += ctx => EndTouchPrimary(ctx);
         }
+
+        //To get start and end position as vector2.
         void StartTouchPrimary(InputAction.CallbackContext context)
         {
             //if (OnStartTouch != null) OnStartTouch(Utils.ScreenToWorld(mainCamera, inputAction.Baseball.PrimaryPosition.ReadValue<Vector2>()), (float)context.startTime);

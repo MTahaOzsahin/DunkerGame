@@ -7,7 +7,7 @@ namespace DunkGame.Concrates.Controllers
     public class ExtraScoreController : MonoBehaviour
     {
         [SerializeField] GameObject extraScorePanel;
-        private void OnTriggerEnter(Collider collider) // CAn be added partucle effect here if wanted.
+        private void OnTriggerEnter(Collider collider) // Can be added partucle effect here if wanted.
         {
             if (collider.GetComponent<BallController>() != null)
             {

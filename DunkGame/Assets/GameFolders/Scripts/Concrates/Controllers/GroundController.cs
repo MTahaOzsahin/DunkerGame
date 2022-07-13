@@ -7,6 +7,7 @@ namespace DunkGame.Concrates.Controllers
 {
     public class GroundController : MonoBehaviour, IGrounderController
     {
+        //This script makes fake gravity to ball for better feeling
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.GetComponent<BallController>() != null)

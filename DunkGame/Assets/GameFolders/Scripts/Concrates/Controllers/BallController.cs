@@ -10,6 +10,8 @@ namespace DunkGame.Concrates.Controllers
 {
     public class BallController : MonoBehaviour
     {
+        //Main ball controller.
+
         IMover mover;
         ParabolaController parabolaController;
         SwipeDetection swipeDetection;
@@ -42,7 +44,7 @@ namespace DunkGame.Concrates.Controllers
             inputAction.Disable();
             swipeDetection.OnSwipe -= ThrowBall;
         }
-        public Vector2 GetDirection()
+        public Vector2 GetDirection() //Getting direction infos for smooth movement.
         {
             Vector2 input = inputAction.Baseball.Movement.ReadValue<Vector2>();
             currentInputVector = Vector2.SmoothDamp(currentInputVector, input, ref smoothInputVelocity, smoothInputSpeed);
@@ -62,7 +64,7 @@ namespace DunkGame.Concrates.Controllers
             Movement();
             FallCheck();
         }
-        void Movement()
+        void Movement() // The values got by DetDirection() peform movement here.
         {
             mover.Movement(GetDirection());
         }
@@ -87,7 +89,7 @@ namespace DunkGame.Concrates.Controllers
             return false;
         }
 
-        void FallCheck() //To prevent ball to fall.
+        void FallCheck() //To prevent ball to fall in void.
         {
             if (transform.position.y < -30)
             {

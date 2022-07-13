@@ -8,6 +8,7 @@ namespace DunkGame.Concrates.Controllers
 {
     public class ObstacleController : MonoBehaviourSingleton<ObstacleController>, IMoveableObject
     {
+        //This script makes obstacles able to move
 
         [Header("Movement Values")]
         [SerializeField] Vector3 direction = new Vector3(0,0,1);

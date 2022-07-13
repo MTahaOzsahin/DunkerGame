@@ -15,7 +15,7 @@ namespace DunkGame.Concrates.Movement
             _rigidbody = rigidbody;
         }
 
-        public void ThrowBall(Vector3 dif) // Will not use
+        public void ThrowBallRigibody(Vector3 dif) // If rigidbody wanted to use to throw ball. 
         {
             _rigidbody.velocity = Vector3.zero; 
             _rigidbody.angularVelocity = Vector3.zero;

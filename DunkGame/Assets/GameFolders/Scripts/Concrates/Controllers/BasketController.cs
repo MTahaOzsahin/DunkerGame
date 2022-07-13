@@ -9,6 +9,8 @@ namespace DunkGame.Concrates.Controllers
 {
     public class BasketController : MonoBehaviourSingleton<BasketController>, IMoveableObject
     {
+        // Main basket controller script. Shake effect and ui can be moved another script if wanted.
+
         public event System.Action scoreAction;
 
         [Header("Shake Effect variables")]
