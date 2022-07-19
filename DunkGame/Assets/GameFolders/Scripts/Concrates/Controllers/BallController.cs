@@ -37,12 +37,16 @@ namespace DunkGame.Concrates.Controllers
         private void OnEnable()
         {
             inputAction.Enable();
-            swipeDetection.OnSwipe += ThrowBall;
+            swipeDetection.OnUpSwipe += ThrowBall;
+            swipeDetection.OnRightSwipe += ThrowBall;
+            swipeDetection.OnLeftUpSwipe += ThrowBall;
         }
         private void OnDisable()
         {
             inputAction.Disable();
-            swipeDetection.OnSwipe -= ThrowBall;
+            swipeDetection.OnUpSwipe -= ThrowBall;
+            swipeDetection.OnRightSwipe -= ThrowBall;
+            swipeDetection.OnLeftUpSwipe -= ThrowBall;
         }
         public Vector2 GetDirection() //Getting direction infos for smooth movement.
         {

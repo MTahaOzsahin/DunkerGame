@@ -9,35 +9,67 @@ namespace DunkGame.Concrates.Controllers
         /// <summary>
         /// This script just set to positions of parabola.
         /// First position is always be ball's position.
-        /// Last position is always be basket position.
-        /// Second position will be near to basket and a few point higher. This point can be math scripted if wwanted.
+        /// Last position is always be target position.
+        /// Second position will be near to target and a few point higher. This point can be math scripted if wwanted.
         /// </summary>
 
-        [SerializeField] Collider basketCollider;
+        SwipeDetection swipeDetection;
+       
+
+        [Header("Basket and Ball")]
+        [SerializeField] Transform basketTransform;
         [SerializeField] Transform ballTransform;
 
-        //[SerializeField] float lerpValue = 0.5f; 
+        [Header("Player to Pass")]
+        [SerializeField] Transform rightPassTarget;
+        [SerializeField] Transform leftPassTarget;
+
+        [Header("Parabola Height")]
         [SerializeField] float secondPointHeight = 4f;
 
-        private void Update()
+        private void OnEnable()
         {
-            SetPositions();
+            swipeDetection = SwipeDetection.Instance;
+            swipeDetection.OnUpSwipe += SetPositionsToShot;
+            swipeDetection.OnRightSwipe += SetPositionsToPassRight;
+            swipeDetection.OnLeftUpSwipe += SetPositionsToPassLeft;
         }
-        void SetPositions()
+        private void OnDisable()
+        {
+            swipeDetection.OnUpSwipe -= SetPositionsToShot;
+            swipeDetection.OnRightSwipe -= SetPositionsToPassRight;
+            swipeDetection.OnLeftUpSwipe -= SetPositionsToPassLeft;
+        }
+        
+        void SetPositionsToShot()
         {
             this.gameObject.transform.GetChild(0).position = ballTransform.position;
-            this.gameObject.transform.GetChild(1).position = new Vector3(this.gameObject.transform.GetChild(1).position.x, secondPointHeight, 
-                (ballTransform.position.z + basketCollider.transform.position.z) / 2f);
-            this.gameObject.transform.GetChild(2).position = basketCollider.transform.position;
-            //this.gameObject.transform.GetChild(1).position = new Vector3(this.gameObject.transform.GetChild(1).position.x, secondPointHeight
-            //, Vector3.Slerp(ballTransform.position, basketCollider.transform.position, lerpValue).z);  // This for lerp for second point if wanted.
+            this.gameObject.transform.GetChild(1).position = new Vector3((ballTransform.transform.position.x + basketTransform.position.x) / 2,
+                Mathf.Max(ballTransform.position.y, basketTransform.position.y) + secondPointHeight,
+                (ballTransform.position.z + basketTransform.transform.position.z) / 2f);
+            this.gameObject.transform.GetChild(2).position = basketTransform.transform.position;
 
-
-            if (Mathf.Abs(Vector3.Distance(ballTransform.position,basketCollider.transform.position)) > 20f) // If ball far enough can be basket randomize.
+            if (Mathf.Abs(Vector3.Distance(ballTransform.position, basketTransform.transform.position)) > 20f) // If ball far enough can be basket randomize.
             {
                 float randomZOffset = Random.Range(-4f, 4f);
-                this.gameObject.transform.GetChild(2).position =new Vector3(basketCollider.transform.position.x,basketCollider.transform.position.y,basketCollider.transform.position.z + randomZOffset);
+                this.gameObject.transform.GetChild(2).position = new Vector3(basketTransform.transform.position.x, basketTransform.transform.position.y, basketTransform.transform.position.z + randomZOffset);
             }
+        }
+        void SetPositionsToPassRight()
+        {
+            this.gameObject.transform.GetChild(0).position = ballTransform.position;
+            this.gameObject.transform.GetChild(1).position = new Vector3((ballTransform.position.x + rightPassTarget.position.x) / 2,
+                Mathf.Max(ballTransform.position.y,rightPassTarget.position.y) + secondPointHeight,
+                (ballTransform.position.z + rightPassTarget.transform.position.z) / 2f);
+            this.gameObject.transform.GetChild(2).position = rightPassTarget.transform.position;
+        }
+        void SetPositionsToPassLeft()
+        {
+            this.gameObject.transform.GetChild(0).position = ballTransform.position;
+            this.gameObject.transform.GetChild(1).position = new Vector3((ballTransform.position.x + leftPassTarget.position.x) / 2,
+                Mathf.Max(ballTransform.position.y, leftPassTarget.position.y) + secondPointHeight,
+                (ballTransform.position.z + leftPassTarget.transform.position.z) / 2f);
+            this.gameObject.transform.GetChild(2).position = leftPassTarget.transform.position;
         }
     }
 }

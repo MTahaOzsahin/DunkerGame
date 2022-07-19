@@ -109,9 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd2cbac94c4f7d408a177eb73318c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basketCollider: {fileID: 0}
+  basketTransform: {fileID: 0}
   ballTransform: {fileID: 0}
-  secondPointHeight: 10
+  rightPassTarget: {fileID: 0}
+  leftPassTarget: {fileID: 0}
+  secondPointHeight: 2
 --- !u!1 &8167786978701133003
 GameObject:
   m_ObjectHideFlags: 0

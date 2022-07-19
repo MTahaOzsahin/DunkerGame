@@ -7,6 +7,6 @@ namespace DunkGame.Abstracts
     public interface IMover
     {
         void Movement(Vector2 direction);
-        void ThrowBall(Vector3 dif);
+        void ThrowBallRigibody(Vector3 dif);
     }
 }

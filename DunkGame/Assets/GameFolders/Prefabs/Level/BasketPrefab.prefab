@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8931507377120183351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5527654033350503685}
+  m_Layer: 0
+  m_Name: BasketTargetPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5527654033350503685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8931507377120183351}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.31, y: -0.36, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7949592837707728016}
+  m_RootOrder: 47
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7626874471666836347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,3 +197,13 @@ MonoBehaviour:
   randomness: 10
   sanpping: 0
   fadeOut: 1
+  scorePanel: {fileID: 0}
+  isMove: 0
+  direction: {x: 0, y: 0, z: 1}
+  moveRange: 0
+  moveRate: 2
+--- !u!4 &7949592837707728016 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6db7aff0726c22749bcd08b9b2e761ff, type: 3}
+  m_PrefabInstance: {fileID: 7626874471666836347}
+  m_PrefabAsset: {fileID: 0}
