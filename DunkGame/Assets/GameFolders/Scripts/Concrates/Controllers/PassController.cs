@@ -23,17 +23,59 @@ namespace DunkGame.Concrates.Controllers
                 objectsToPasss.Add(gameObjectsToPass.transform);
             }
         }
-        //Transform CheckClosestRight()
-        //{
-        //    foreach (Transform obj in objectsToPasss)
-        //    {
-        //        Vector3 closestTransform = Vector3.(ballTransform.position, obj.position);
-        //    }
-        //    return closestTransform
-        //}
-        void CheckClosestLeft()
+        private void Update()
         {
+            CheckClosestRight();
+            CheckClosestLeft();
+        }
 
+        public Transform CheckClosestRight()
+        {
+            Transform tMin = null;
+            float minDist = Mathf.Infinity;
+            Vector3 currentPos = ballTransform.position;
+            
+            foreach (Transform obj in objectsToPasss)
+            {
+                float dist = Vector3.Distance(obj.position, currentPos);
+                if (dist < minDist)
+                {
+                    if (3f < dist)
+                    {
+                        if (ballTransform.position.z > obj.position.z )
+                        {
+                            tMin = obj;
+                            minDist = dist;
+                        }
+                    }
+                }
+            }
+            Debug.Log("Closesst right " + tMin.name);
+            return tMin;
+        }
+        public Transform CheckClosestLeft()
+        {
+            Transform tMin = null;
+            float minDist = Mathf.Infinity;
+            Vector3 currentPos = ballTransform.position;
+
+            foreach (Transform obj in objectsToPasss)
+            {
+                float dist = Vector3.Distance(obj.position, currentPos);
+                if (dist < minDist)
+                {
+                    if (3f < dist)
+                    {
+                        if (ballTransform.position.z < obj.position.z)
+                        {
+                            tMin = obj;
+                            minDist = dist;
+                        }
+                    }
+                }
+            }
+            Debug.Log("Closesst left " + tMin.name);
+            return tMin;
         }
     }
 }

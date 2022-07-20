@@ -21,12 +21,26 @@ namespace DunkGame.Concrates.Controllers
         [SerializeField] Transform ballTransform;
 
         [Header("Player to Pass")]
-        [SerializeField] Transform rightPassTarget;
-        [SerializeField] Transform leftPassTarget;
+        Transform rightPassTarget;
+        Transform leftPassTarget;
 
         [Header("Parabola Height")]
         [SerializeField] float secondPointHeight = 4f;
 
+
+
+        List<Transform> objectsToPasss = new List<Transform>();
+
+       
+
+        private void Start()
+        {
+            foreach (GameObject gameObjectsToPass in GameObject.FindGameObjectsWithTag("ObjectsToPass"))
+            {
+                objectsToPasss.Add(gameObjectsToPass.transform);
+            }
+        }
+        
         private void OnEnable()
         {
             swipeDetection = SwipeDetection.Instance;
@@ -40,7 +54,61 @@ namespace DunkGame.Concrates.Controllers
             swipeDetection.OnRightSwipe -= SetPositionsToPassRight;
             swipeDetection.OnLeftUpSwipe -= SetPositionsToPassLeft;
         }
-        
+        /// <summary>
+        /// Checking between of the preset passable objects that which is the closest in the right side of ball.
+        /// </summary>
+        Transform CheckClosestRight()
+        {
+            Transform tMin = null;
+            float minDist = Mathf.Infinity;
+            Vector3 currentPos = ballTransform.position;
+
+            foreach (Transform obj in objectsToPasss)
+            {
+                float dist = Vector3.Distance(obj.position, currentPos);
+                if (dist < minDist)
+                {
+                    if (3f < dist)
+                    {
+                        if (ballTransform.position.z > obj.position.z)
+                        {
+                            tMin = obj;
+                            minDist = dist;
+                        }
+                    }
+                }
+            }
+            return tMin;
+        }
+        /// <summary>
+        /// Checking between of the preset passable objects that which is the closest in the left side of ball.
+        /// </summary>
+        Transform CheckClosestLeft()
+        {
+            Transform tMin = null;
+            float minDist = Mathf.Infinity;
+            Vector3 currentPos = ballTransform.position;
+
+            foreach (Transform obj in objectsToPasss)
+            {
+                float dist = Vector3.Distance(obj.position, currentPos);
+                if (dist < minDist)
+                {
+                    if (3f < dist)
+                    {
+                        if (ballTransform.position.z < obj.position.z)
+                        {
+                            tMin = obj;
+                            minDist = dist;
+                        }
+                    }
+                }
+            }
+            return tMin;
+        }
+        /// <summary>
+        /// Setting last position to basket himself and making randomize if the ball too far to basket.
+        /// </summary>
         void SetPositionsToShot()
         {
             this.gameObject.transform.GetChild(0).position = ballTransform.position;
@@ -57,6 +125,8 @@ namespace DunkGame.Concrates.Controllers
         }
         void SetPositionsToPassRight()
         {
+            rightPassTarget = CheckClosestRight();
+
             this.gameObject.transform.GetChild(0).position = ballTransform.position;
             this.gameObject.transform.GetChild(1).position = new Vector3((ballTransform.position.x + rightPassTarget.position.x) / 2,
                 Mathf.Max(ballTransform.position.y,rightPassTarget.position.y) + secondPointHeight,
@@ -65,6 +135,8 @@ namespace DunkGame.Concrates.Controllers
         }
         void SetPositionsToPassLeft()
         {
+            leftPassTarget = CheckClosestLeft();
+
             this.gameObject.transform.GetChild(0).position = ballTransform.position;
             this.gameObject.transform.GetChild(1).position = new Vector3((ballTransform.position.x + leftPassTarget.position.x) / 2,
                 Mathf.Max(ballTransform.position.y, leftPassTarget.position.y) + secondPointHeight,

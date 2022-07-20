@@ -111,8 +111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basketTransform: {fileID: 0}
   ballTransform: {fileID: 0}
-  rightPassTarget: {fileID: 0}
-  leftPassTarget: {fileID: 0}
   secondPointHeight: 2
 --- !u!1 &8167786978701133003
 GameObject:

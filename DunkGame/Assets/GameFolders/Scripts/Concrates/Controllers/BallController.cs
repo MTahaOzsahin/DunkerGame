@@ -74,7 +74,7 @@ namespace DunkGame.Concrates.Controllers
         }
         void ThrowBall()
         {
-            if (timer > 3f)
+            if (timer > 1f)
             {
                 parabolaController = GetComponent<ParabolaController>();
                 parabolaController.FollowParabola();
