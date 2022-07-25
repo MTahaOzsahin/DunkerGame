@@ -5,19 +5,19 @@ using UnityEngine;
 
 namespace DunkGame.Concrates.StateMachine.States
 {
-    public class IdleState : IStateMachine
+    public class ShooterState : IStateMachine
     {
         public void OnEnter()
         {
-            Debug.Log("Idle Enter");
+            Debug.Log("Shooter Enter");
         }
         public void Action()
         {
-            Debug.Log("Idle Action");
+            Debug.Log("Shooter Action");
         }
         public void OnExit()
         {
-            Debug.Log("Idle Exit");
+            Debug.Log("Shooter Exit");
         }
     }
 }
