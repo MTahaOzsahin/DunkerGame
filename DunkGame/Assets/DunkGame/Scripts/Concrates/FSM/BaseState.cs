@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace DunkGame.Concrates.FSM
 {
-    public class BaseState : ScriptableObject
+    public abstract class BaseState : ScriptableObject
     {
-        public virtual IEnumerator OnEnterExecute(PassableObjectsController passableObjects) { yield return passableObjects; }
-        public virtual IEnumerator OnMainExecute(PassableObjectsController passableObjects) { yield return passableObjects; }
-        public virtual IEnumerator OnExitExecute(PassableObjectsController passableObjects) {yield return passableObjects; }
+        public abstract void OnEnterExecute(PassableObjectsController passableObjects);
+        public abstract void OnMainExecute(PassableObjectsController passableObjects);
+        public abstract void OnExitExecute(PassableObjectsController passableObjects);
     }
 }

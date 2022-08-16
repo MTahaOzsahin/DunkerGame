@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f655d0b74ea984ea30a75853777a90, type: 3}
-  m_Name: Common
+  m_Script: {fileID: 11500000, guid: 110af9c77064cbc40957371458d6c863, type: 3}
+  m_Name: Empty
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: 404e42841b498fd49a842b11835b62f7, type: 2}
-  transitions:
-  - {fileID: 11400000, guid: f6faa26aff88dae4b98171db6dbad42b, type: 2}

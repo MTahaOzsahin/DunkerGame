@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace DunkGame.Concrates.FSM.DecisionScripts
 {
-    [CreateAssetMenu(menuName ="FSM/Decison/Common")]
-    public class Common : BaseDecision
+    [CreateAssetMenu(menuName = "FSM/Decision/HasBall")]
+    public class DecisionHasBall : BaseDecision
     {
         public override bool Decide(PassableObjectsController passableObjects)
         {
-            return true;
+            return passableObjects.HasBall();
         }
     }
 }

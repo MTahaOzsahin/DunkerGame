@@ -11,24 +11,18 @@ namespace DunkGame.Concrates.FSM
         public List<BaseAction> actions = new List<BaseAction>();
         public List<Transition> transitions = new List<Transition>();
 
-        public override IEnumerator OnEnterExecute(PassableObjectsController passableObjects)
+        public override void OnEnterExecute(PassableObjectsController passableObjects)
         {
-            foreach(var action in actions) action.OnEnterExecute(passableObjects);
-
-            return base.OnEnterExecute(passableObjects);
+            foreach (var action in actions) action.OnEnterExecute(passableObjects);
         }
-        public override IEnumerator OnMainExecute(PassableObjectsController passableObjects)
+        public override void OnMainExecute(PassableObjectsController passableObjects)
         {
-            foreach (var action in actions) action.OnMainExecute(passableObjects);
             foreach (var transition in transitions) transition.Execute(passableObjects);
-
-            return base.OnMainExecute(passableObjects);
+            foreach (var action in actions) action.OnMainExecute(passableObjects);
         }
-        public override IEnumerator OnExitExecute(PassableObjectsController passableObjects)
+        public override void OnExitExecute(PassableObjectsController passableObjects)
         {
             foreach (var action in actions) action.OnExitExecute(passableObjects);
-
-            return base.OnExitExecute(passableObjects);
         }
     }
 }
